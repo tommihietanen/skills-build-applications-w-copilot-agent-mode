@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { ActivityModel } from '../models/Activity';
-import { LeaderboardModel } from '../models/Leaderboard';
-import { TeamModel } from '../models/Team';
-import { UserModel } from '../models/User';
-import { WorkoutModel } from '../models/Workout';
+import { ActivityModel as activity } from '../models/Activity';
+import { LeaderboardModel as leaderboard } from '../models/Leaderboard';
+import { TeamModel as team } from '../models/Team';
+import { UserModel as user } from '../models/User';
+import { WorkoutModel as workout } from '../models/Workout';
 
 const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 
@@ -18,14 +18,14 @@ async function seedDatabase() {
     console.log('Seed the octofit_db database with test data');
 
     await Promise.all([
-      ActivityModel.deleteMany({}),
-      LeaderboardModel.deleteMany({}),
-      TeamModel.deleteMany({}),
-      UserModel.deleteMany({}),
-      WorkoutModel.deleteMany({}),
+      activity.deleteMany({}),
+      leaderboard.deleteMany({}),
+      team.deleteMany({}),
+      user.deleteMany({}),
+      workout.deleteMany({}),
     ]);
 
-    const [alex, priya, jordan, sam] = await UserModel.create([
+    const [alex, priya, jordan, sam] = await user.create([
       {
         username: 'alex-rivera',
         displayName: 'Alex Rivera',
@@ -56,7 +56,7 @@ async function seedDatabase() {
       },
     ]);
 
-    await TeamModel.create([
+    await team.create([
       {
         name: 'Octo Striders',
         motto: 'Every step counts.',
@@ -69,7 +69,7 @@ async function seedDatabase() {
       },
     ]);
 
-    await ActivityModel.create([
+    await activity.create([
       {
         user: alex._id,
         type: 'Run',
@@ -103,14 +103,14 @@ async function seedDatabase() {
       },
     ]);
 
-    await LeaderboardModel.create([
+    await leaderboard.create([
       { user: sam._id, rank: 1, points: 2840, weeklyStreak: 8 },
       { user: priya._id, rank: 2, points: 2660, weeklyStreak: 6 },
       { user: alex._id, rank: 3, points: 2195, weeklyStreak: 5 },
       { user: jordan._id, rank: 4, points: 1320, weeklyStreak: 3 },
     ]);
 
-    await WorkoutModel.create([
+    await workout.create([
       {
         title: 'Morning Mobility Flow',
         focus: 'Mobility',
