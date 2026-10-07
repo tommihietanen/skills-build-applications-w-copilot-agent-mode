@@ -17,6 +17,12 @@ async function seedDatabase() {
     console.log('Connected to octofit_db');
     console.log('Seed the octofit_db database with test data');
 
+    if (process.env.NODE_ENV === 'production' || process.env.ALLOW_DATABASE_RESET !== 'true') {
+      throw new Error(
+        'Seeding deletes all records in the five app collections. Use a disposable non-production database and set ALLOW_DATABASE_RESET=true to confirm.',
+      );
+    }
+
     await Promise.all([
       activity.deleteMany({}),
       leaderboard.deleteMany({}),
