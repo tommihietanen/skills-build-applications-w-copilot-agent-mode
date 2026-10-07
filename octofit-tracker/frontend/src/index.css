@@ -1,0 +1,43 @@
+:root {
+  color: #1c2d26;
+  background: #eef5ef;
+  font-family: Avenir, Montserrat, Corbel, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(135deg, rgba(199, 226, 207, 0.7), rgba(245, 249, 240, 0.88)),
+    repeating-linear-gradient(90deg, rgba(55, 96, 75, 0.08) 0 1px, transparent 1px 92px);
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #162e24;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  max-width: 720px;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+button,
+a {
+  font: inherit;
+}
