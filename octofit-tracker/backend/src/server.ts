@@ -36,10 +36,13 @@ app.get('/api/health', (_request, response) => {
   });
 });
 
-mongoose.connect(connectionString).catch((error: unknown) => {
-  console.error('Error connecting to octofit_db:', error);
-});
-
-app.listen(port, () => {
-  console.log(`OctoFit API listening at ${apiBaseUrl}`);
-});
+mongoose.connect(connectionString)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`OctoFit API listening at ${apiBaseUrl}`);
+    });
+  })
+  .catch((error: unknown) => {
+    console.error('Error connecting to octofit_db:', error);
+    process.exit(1);
+  });
