@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import activitiesRouter from './routes/activities';
 import leaderboardRouter from './routes/leaderboard';
@@ -14,6 +15,11 @@ const apiBaseUrl = codespaceName
   : 'http://localhost:8000';
 const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
 
+app.use(cors({
+  origin: codespaceName
+    ? `https://${codespaceName}-5173.app.github.dev`
+    : 'http://localhost:5173',
+}));
 app.use(express.json());
 
 app.use('/api/users', usersRouter);
